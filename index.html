@@ -1,118 +1,166 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>DEVIL × TRUTH</title>
+<title>DEVIL × TRUTH — HALLOWEEN SPIN</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 75% 0%,#242019 0,#090909 38%);color:#eee;font-family:Manrope,Arial,sans-serif;min-height:100vh}
-.shell{max-width:1050px;margin:auto;padding:22px 22px 40px}
-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #333;padding:8px 0 20px}
-.brand{font-weight:800;letter-spacing:3px}.brand span{color:#c9a65b}
-.user{font-size:11px;color:#aaa}.user b{color:#d6b76d;margin-left:12px}
-.hero{position:relative;overflow:hidden;padding:60px 10px;border-bottom:1px solid #333}
-.eyebrow,small{font-size:10px;letter-spacing:2px;color:#b99b5c}
-.hero h1{font-size:clamp(48px,10vw,90px);line-height:.92;letter-spacing:-4px;margin:20px 0}
-.hero h1 em{font-style:normal;color:#c6a45d}.hero p,.muted{color:#929292;font-size:13px;line-height:1.7}
-button{background:#c6a45d;color:#101010;border:0;padding:13px 17px;font-weight:700;font-size:10px;letter-spacing:1px;cursor:pointer}
-.hero-mark{position:absolute;right:8%;top:15%;font-size:150px;color:#29251d;pointer-events:none}
-.notice{font-size:10px;color:#c8ad70;padding:13px 0}
-nav{display:flex;gap:6px;overflow:auto;border-bottom:1px solid #333;padding-bottom:16px}
-nav button{background:#171717;color:#999;white-space:nowrap}nav button.on{background:#c6a45d;color:#111}
-.content{padding:30px 0;min-height:290px}h2{font-size:26px;margin:10px 0 20px}h3{letter-spacing:1px}
-.tiles,.giftGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:20px 0 35px}
-.tiles article,.gift,.profileBox{background:linear-gradient(135deg,#1d1b17,#101010);border:1px solid #37322a;padding:22px}
-.tiles article{cursor:pointer}.giftGrid{grid-template-columns:repeat(4,1fr)}.gift{padding:16px;text-align:center}
-.gift .symbol{font-size:42px;color:#d2b16a;padding:12px 0}.gift p{font-size:11px;color:#c5a45f}.gift button{width:100%;padding:10px}
-.listRow{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #292929;padding:15px 4px;font-size:12px}
-.listRow span{font-size:10px;color:#c4a35f}.listRow button{padding:9px 13px}
-.profileBox{max-width:500px}.profileBox p{display:flex;justify-content:space-between;color:#888;font-size:10px}.profileBox b{color:#d4b36a}
-footer{border-top:1px solid #333;padding-top:18px;font-size:10px;letter-spacing:2px;color:#777;display:flex;justify-content:space-between}
-#wheel{font-size:70px;text-align:center;padding:15px}
-@media(max-width:650px){.giftGrid{grid-template-columns:repeat(2,1fr)}.tiles{grid-template-columns:1fr}.hero-mark{font-size:90px}}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:#fff;background:#0b0018;overflow-x:hidden;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 0%,#ff00c8 0,transparent 35%),radial-gradient(circle at 85% 20%,#ff7300 0,transparent 35%),radial-gradient(circle at 50% 100%,#6a00ff 0,transparent 45%);opacity:.55;pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1;max-width:520px;margin:auto;padding:14px 14px 30px}
+.top{display:flex;justify-content:space-between;align-items:center;background:#00000088;border:1px solid #ff00c8;padding:10px 12px;border-radius:16px;box-shadow:0 0 25px #ff00c8}
+.top b{color:#ffe600}.live{background:#00ff66;color:#000;font-weight:900;font-size:11px;padding:6px 8px;border-radius:20px;animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:scale(1.12);box-shadow:0 0 20px #00ff66}}
+.hero{text-align:center;padding:14px 0 4px}.hero h1{font-size:42px;line-height:.9;margin:6px 0;text-shadow:0 0 20px #ff7300,0 0 40px #ff00c8;animation:glow 1.2s infinite alternate}
+@keyframes glow{to{text-shadow:0 0 30px #ffe600,0 0 60px #ff00c8}}
+.badge{display:inline-block;background:#ff7300;color:#000;font-weight:900;padding:6px 10px;border-radius:20px;font-size:12px;transform:rotate(-3deg)}
+.badge2{display:inline-block;background:#ffe600;color:#000;font-weight:900;padding:6px 10px;border-radius:20px;font-size:12px;transform:rotate(2deg)}
+.marquee{background:#ffe600;color:#000;font-weight:900;padding:8px;white-space:nowrap;overflow:hidden;border-radius:10px;margin:12px 0}
+.marquee span{display:inline-block;animation:mar 12s linear infinite}
+@keyframes mar{to{transform:translateX(-50%)}}
+.bal{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center}
+.bal div{background:#1a0033;border:2px solid #a100ff;border-radius:14px;padding:10px 4px}.bal b{font-size:20px;color:#ffe600;display:block}.bal small{font-size:10px;color:#ccc}
+.wheelBox{position:relative;width:310px;height:310px;margin:18px auto}
+.wheel{width:310px;height:310px;border-radius:50%;border:8px solid #ffe600;box-shadow:0 0 40px #ff00c8,0 0 80px #ff7300;transition:transform 4.2s cubic-bezier(.1,.7,.1,1);background:conic-gradient(#ff00c8 0 45deg,#ff7300 45deg 90deg,#00e5ff 90deg 135deg,#ffe600 135deg 180deg,#7bff00 180deg 225deg,#a100ff 225deg 270deg,#ff1744 270deg 315deg,#00ff66 315deg 360deg);position:relative;overflow:hidden}
+.wheel i{position:absolute;left:50%;top:50%;font-size:28px;transform-origin:0 0}
+.pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:42px;z-index:3;filter:drop-shadow(0 0 10px #ffe600)}
+.center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:110px;height:110px;background:#000;border:4px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;font-size:14px;z-index:2;box-shadow:0 0 30px #fff}
+button{border:0;cursor:pointer;font-weight:900}
+.spinBtn{width:100%;padding:18px;font-size:20px;border-radius:16px;background:linear-gradient(90deg,#ff00c8,#ff7300,#ffe600);color:#000;box-shadow:0 0 35px #ff00c8;animation:pulse 1s infinite}
+.spinBtn:disabled{filter:grayscale(1);animation:none}
+.freeTag{text-align:center;color:#00ff66;font-weight:900;margin:8px}
+.shop{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.card{background:#ffffff14;border:2px solid #00e5ff;border-radius:16px;padding:14px;text-align:center}
+.card.hot{border-color:#ffe600;box-shadow:0 0 25px #ffe600;background:#ff730022}
+.card h3{margin:4px 0}.card button{width:100%;padding:11px;border-radius:10px;background:#ffe600;margin-top:8px}
+.card .starsBtn{background:#fff;color:#000}
+.feed{background:#000000aa;border-radius:14px;padding:12px;margin-top:16px;border:1px solid #ff7300}
+.feed div{padding:7px 0;border-bottom:1px solid #333;font-size:13px}
+.feed b{color:#ffe600}
+.prizes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;text-align:center}
+.prizes div{background:#ffffff14;border-radius:12px;padding:10px 2px;font-size:24px}.prizes small{display:block;font-size:9px;color:#ffe600}
+.tabs{display:flex;gap:6px;margin-top:16px}.tabs button{flex:1;padding:10px;border-radius:12px;background:#222;color:#fff}.tabs button.on{background:#ff00c8}
+.sec{display:none}.sec.on{display:block}
+.inv div,.lead div{display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #333;font-size:13px}
+footer{text-align:center;font-size:11px;color:#ddd;margin-top:20px;line-height:1.8}footer b{color:#ffe600}
+.flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:99}
+.winPop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:100;background:#000000cc;text-align:center;padding:20px}
+.winPop.show{display:flex}.winBox{background:linear-gradient(135deg,#ff00c8,#ff7300);padding:26px;border-radius:22px;border:4px solid #ffe600;animation:pop .5s}
+@keyframes pop{from{transform:scale(.5) rotate(-10deg)}to{transform:scale(1)}}
+.winBox h2{font-size:34px;margin:0}.winBox button{padding:13px 20px;border-radius:12px;background:#000;color:#ffe600;margin-top:14px;font-size:16px}
+.confetti{position:fixed;font-size:26px;top:-40px;z-index:101;animation:fall 2.5s forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
 </style></head><body>
-<main class="shell">
-<header><div class="brand">DEVIL <span>×</span> TRUTH</div><div class="user"><span id="uName">Player</span> <b id="pts"></b></div></header>
-<section class="hero"><div class="eyebrow">YOUR LUCK. YOUR GAME. YOUR RULES.</div>
-<h1>PLAY THE<br><em>UNKNOWN.</em></h1><p>Enter the arena. Challenge players. Collect digital-style gifts.</p>
-<button onclick="show('pvp')">ENTER ARENA <span>↗</span></button><div class="hero-mark">✦</div></section>
-<div class="notice" id="notice">DEMO MODE • виртуальные очки</div>
-<nav id="nav"></nav>
+<div class="flash" id="flash"></div>
+<div class="wrap">
+<div class="top"><div>🎃 <b>DEVIL × TRUTH</b><br><small>HALLOWEEN UPDATE</small></div><div class="live">● LIVE <span id="online">1284</span></div></div>
+<div class="hero"><span class="badge">🎃 HALLOWEEN</span> <span class="badge2">🔥 HOT DROP</span><h1>SPIN<br>AND WIN</h1><p>Крути яркое колесо. 1 приз за 1 спин. Легендарный приз выпадает почти никогда.</p></div>
+<div class="marquee"><span>🎃 HALLOWEEN SPIN 🎃 1 FREE SPIN 🎃 LEGENDARY 0.5% 🎃 ДИРЕКТОР NIKO 🎃 СОЗДАТЕЛЬ @kaygaros 🎃&nbsp;</span><span>🎃 HALLOWEEN SPIN 🎃 1 FREE SPIN 🎃 LEGENDARY 0.5% 🎃 ДИРЕКТОР NIKO 🎃 СОЗДАТЕЛЬ @kaygaros 🎃&nbsp;</span></div>
+<div class="bal"><div><b id="gram">0</b><small>💎 GRAM</small></div><div><b id="stars">0</b><small>⭐ STARS</small></div><div><b id="spins">1</b><small>🎡 СПИНЫ</small></div></div>
+<div class="tabs"><button class="on" onclick="tab('wheel',this)">🎡 КОЛЕСО</button><button onclick="tab('shop',this)">🛒 МАГАЗИН</button><button onclick="tab('inv',this)">🎁 ПРИЗЫ</button><button onclick="tab('lead',this)">🏆 ТОП</button></div>
 
-<section class="content" id="Home">
-<h2>THE ARENA</h2><div class="tiles">
-<article onclick="show('pvp')"><small>01 / COMPETE</small><h3>PVP ROULETTE</h3><p>Challenge another player in a demo round.</p></article>
-<article onclick="show('gifts')"><small>02 / COLLECT</small><h3>GIFT VAULT</h3><p>Explore collectible-style demo items.</p></article></div>
-<h2>LIVE ROOMS</h2><div id="rooms"></div>
-</section>
+<div class="sec on" id="wheel">
+<div class="wheelBox"><div class="pointer">🔻</div><div class="wheel" id="wheelEl"></div><div class="center">HALLOWEEN<br>🎃 SPIN 🎃</div></div>
+<div class="freeTag" id="freeTag">🎁 У ТЕБЯ 1 БЕСПЛАТНЫЙ СПИН!</div>
+<button class="spinBtn" id="spinBtn" onclick="spin()">🎡 КРУТИТЬ • БЕСПЛАТНО</button>
+<p style="text-align:center;font-size:12px;color:#ccc">Дальше: 1 спин = 1 💎 GRAM. Без GRAM крутить нельзя. Бесконечных денег нет.</p>
+<div class="prizes">
+<div>🎃<small>COMMON<br>45%</small></div><div>👻<small>RARE<br>30%</small></div><div>👑<small>EPIC<br>15%</small></div><div>💎<small>LEGENDARY<br>0.5% 🔥</small></div>
+</div>
+<div class="feed"><b>🔴 LIVE • ТОЛЬКО ЧТО ВЫИГРАЛИ:</b><div id="feed"></div></div>
+</div>
 
-<section class="content" id="pvp" style="display:none">
-<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><div><small>PLAYER VS PLAYER</small><h2>PVP ROULETTE</h2></div><button onclick="createRoom()">＋ CREATE ROOM · 100 PTS</button></div>
-<p class="muted">Демо-режим: очки не имеют денежной стоимости и не выводятся.</p>
-<div id="wheel">🎡</div><p id="res" style="text-align:center"></p>
-<div style="text-align:center"><button onclick="spin()">SPIN ROULETTE • 100 PTS</button></div>
-<h2 style="margin-top:35px">ROOMS</h2><div id="rooms2"></div>
-</section>
+<div class="sec" id="shop">
+<h2>🛒 КУПИТЬ GRAM</h2><p style="font-size:12px;color:#ccc">GRAM покупается за Telegram Stars. Это демо-магазин внутри приложения: оплата Stars будет подключена через Telegram Payments, реальные деньги не списываются автоматически.</p>
+<div class="shop">
+<div class="card"><h3>1 💎</h3><p>1 спин</p><button class="starsBtn" onclick="buy(1,25)">⭐ 25 STARS</button></div>
+<div class="card hot"><h3>5 💎 🔥</h3><p>5 спинов +1 бонус</p><button class="starsBtn" onclick="buy(6,100)">⭐ 100 STARS</button></div>
+<div class="card"><h3>12 💎</h3><p>12 спинов</p><button class="starsBtn" onclick="buy(12,200)">⭐ 200 STARS</button></div>
+<div class="card hot"><h3>30 💎 👑</h3><p>30 спинов +5 бонус</p><button class="starsBtn" onclick="buy(35,450)">⭐ 450 STARS</button></div>
+</div>
+<button style="width:100%;padding:14px;border-radius:12px;background:#fff;margin-top:12px" onclick="getStars()">⭐ ПОЛУЧИТЬ 100 STARS (ДЕМО-ТЕСТ)</button>
+<p style="font-size:11px;color:#ccc;text-align:center">В боевой версии Stars спишутся через Telegram. Сейчас это тест, чтобы ты проверил механику.</p>
+</div>
 
-<section class="content" id="gifts" style="display:none">
-<small>COLLECTION / DIGITAL-STYLE ITEMS</small><h2>GIFT VAULT</h2><div class="giftGrid" id="giftGrid"></div>
-<p class="muted">Это не реальные NFT и не передаваемые активы.</p></section>
+<div class="sec" id="inv"><h2>🎁 ТВОИ ПРИЗЫ</h2><div class="inv" id="invList"><p style="color:#ccc">Пока пусто. Крути колесо!</p></div></div>
+<div class="sec" id="lead"><h2>🏆 ТОП ИГРОКОВ • LIVE</h2><div class="lead">
+<div><span>1. 👑 @kaygaros</span><b>9 999 💎</b></div>
+<div><span>2. 🎃 NIKO</span><b>7 420 💎</b></div>
+<div><span>3. 👻 GhostKing</span><b>5 100 💎</b></div>
+<div><span>4. 🔥 <span id="meName">ТЫ</span></span><b id="meScore">0 💎</b></div>
+<div><span>5. 💀 NightPlayer</span><b>3 200 💎</b></div>
+</div><p style="font-size:12px;color:#ccc">Твои очки растут только от призов. Нет GRAM = нет спинов = нет топа.</p></div>
 
-<section class="content" id="inv" style="display:none">
-<small>YOUR COLLECTION</small><h2>INVENTORY</h2><div id="invList"></div></section>
+<footer>🎃 HALLOWEEN UPDATE 2026<br>ДИРЕКТОР: <b>NIKO</b><br>СОЗДАТЕЛЬ: <b>@kaygaros</b><br>DEVIL × TRUTH • DEMO • Призы виртуальные, вывод будет добавлен позже.<br>Не вводи seed-фразы и ключи от кошелька.</footer>
+</div>
 
-<section class="content" id="profile" style="display:none">
-<small>PLAYER ACCOUNT</small><h2 id="pName">PLAYER</h2>
-<div class="profileBox"><p>DEMO BALANCE <b id="pPts"></b></p><p>ACCOUNT <b>TELEGRAM MINI APP</b></p><p>WALLET <b>NOT CONNECTED</b></p><p>ROOMS CREATED <b id="pRooms">0</b></p><p>GIFTS OWNED <b id="pGifts">0</b></p></div>
-<p class="muted">TON Connect будет добавлен отдельным безопасным этапом. Не вводите seed-фразы или приватные ключи.</p>
-<button onclick="alert('TON Connect: отдельный безопасный этап. Кошелек пока не подключаем.')">CONNECT WALLET (SOON)</button>
-<br><br><button onclick="resetAll()">RESET DEMO • ВЕРНУТЬ 1000 PTS</button></section>
-
-<section class="content" id="lead" style="display:none">
-<small>GLOBAL RANKING</small><h2>LEADERBOARD</h2>
-<div class="listRow">01 <b>TruthSeeker</b><span>12,400 PTS</span></div>
-<div class="listRow">02 <b>NightPlayer</b><span>9,850 PTS</span></div>
-<div class="listRow">03 <b id="lName">YOU</b><span id="lPts"></span></div>
-<div class="listRow">04 <b>DevilHunter</b><span>7,200 PTS</span></div>
-<div class="listRow">05 <b>GoldGhost</b><span>5,100 PTS</span></div>
-<p class="muted">Пока демонстрационные записи; серверный рейтинг добавляется позже.</p></section>
-
-<footer>DEVIL × TRUTH <span>DEMO BUILD 0.1</span></footer>
-</main>
+<div class="winPop" id="winPop"><div class="winBox"><div style="font-size:60px" id="winEmoji">🎃</div><h2 id="winTitle">ТЫ ВЫИГРАЛ!</h2><p id="winText"></p><button onclick="closeWin()">ЗАБРАТЬ 🔥</button></div></div>
 
 <script>
-Telegram.WebApp.ready(); Telegram.WebApp.expand();
-let tgUser=Telegram.WebApp.initDataUnsafe?.user;
-let displayName=tgUser?.first_name||'Player';
-let points=+localStorage.getItem('dt_pts'); if(!points)points=1000;
-let inv=JSON.parse(localStorage.getItem('dt_inv')||'[]');
-let rooms=JSON.parse(localStorage.getItem('dt_rooms')||'[{"host":"TruthSeeker","stake":100},{"host":"NightPlayer","stake":200},{"host":"DevilHunter","stake":100}]');
-let created=+localStorage.getItem('dt_created')||0;
-let gifts=[{n:'Silver Rose',r:'COMMON',c:100,s:'✦'},{n:'Golden Mask',r:'RARE',c:350,s:'◈'},{n:'Devil Crown',r:'EPIC',c:900,s:'♛'},{n:'Truth Relic',r:'LEGENDARY',c:1800,s:'✧'}];
-let tabs=['Home','PVP Roulette','NFT Gifts','Inventory','Profile','Leaderboard'];
-let ids={ 'Home':'Home','PVP Roulette':'pvp','NFT Gifts':'gifts','Inventory':'inv','Profile':'profile','Leaderboard':'lead' };
-document.getElementById('nav').innerHTML=tabs.map((t,i)=>'<button class="'+(i==0?'on':'')+'" onclick="show(\''+ids[t]+'\',this)">'+t+'</button>').join('');
-function say(m){document.getElementById('notice').textContent=m;}
-function save(){localStorage.setItem('dt_pts',points);localStorage.setItem('dt_inv',JSON.stringify(inv));localStorage.setItem('dt_rooms',JSON.stringify(rooms));localStorage.setItem('dt_created',created);render();}
+Telegram.WebApp.ready();Telegram.WebApp.expand();
+let name=Telegram.WebApp.initDataUnsafe?.user?.first_name||'ТЫ';
+document.getElementById('meName').textContent=name;
+let gram=+(localStorage.getItem('hw_gram')||0);
+let stars=+(localStorage.getItem('hw_stars')||0);
+let inv=JSON.parse(localStorage.getItem('hw_inv')||'[]');
+let freeUsed=localStorage.getItem('hw_free')==='1';
+let score=+(localStorage.getItem('hw_score')||0);
+let wheel=document.getElementById('wheelEl');
+let icons=['🎃','👻','🍬','👑','💀','🧙','🕸️','💎'];
+wheel.innerHTML=icons.map((e,i)=>'<i style="transform:rotate('+(i*45)+'deg) translateY(-125px)">'+e+'</i>').join('');
+function save(){localStorage.setItem('hw_gram',gram);localStorage.setItem('hw_stars',stars);localStorage.setItem('hw_inv',JSON.stringify(inv));localStorage.setItem('hw_free',freeUsed?'1':'0');localStorage.setItem('hw_score',score);render();}
 function render(){
- document.getElementById('uName').textContent=displayName;
- document.getElementById('pts').textContent=points.toLocaleString()+' PTS';
- document.getElementById('pName').textContent=displayName.toUpperCase();
-
-document.getElementById('pPts').textContent=points.toLocaleString()+' PTS';
- document.getElementById('pRooms').textContent=created;
- document.getElementById('pGifts').textContent=inv.length;
- document.getElementById('lName').textContent=displayName;
- document.getElementById('lPts').textContent=points.toLocaleString()+' PTS';
- let html=rooms.length?rooms.map((m,i)=>'<div class="listRow"><div><small>ROOM #'+(i+1)+'</small><b>'+m.host+'</b></div><span>'+m.stake+' PTS</span><button onclick="joinRoom('+i+')">JOIN</button></div>').join(''):'<p class="muted">Открытых комнат пока нет.</p>';
- document.getElementById('rooms').innerHTML=html; document.getElementById('rooms2').innerHTML=html;
- document.getElementById('giftGrid').innerHTML=gifts.map((g,i)=>'<article class="gift"><div class="symbol">'+g.s+'</div><small>'+g.r+'</small><h3>'+g.n+'</h3><p>'+g.c+' PTS</p><button onclick="buyGift('+i+')">COLLECT</button></article>').join('');
- document.getElementById('invList').innerHTML=inv.length?inv.map(x=>'<div class="listRow">✦ '+x+'<span>DEMO ITEM</span></div>').join(''):'<p class="muted">Пока пусто. Загляни в Gift Vault.</p>';
+ document.getElementById('gram').textContent=gram;
+ document.getElementById('stars').textContent=stars;
+ document.getElementById('spins').textContent=(freeUsed?0:1)+gram;
+ document.getElementById('meScore').textContent=score+' 💎';
+ let btn=document.getElementById('spinBtn');
+ if(!freeUsed){btn.textContent='🎡 КРУТИТЬ • БЕСПЛАТНО';document.getElementById('freeTag').textContent='🎁 У ТЕБЯ 1 БЕСПЛАТНЫЙ СПИН!';}
+ else if(gram>0){btn.textContent='🎡 КРУТИТЬ • 1 💎 GRAM';document.getElementById('freeTag').textContent='У тебя '+gram+' GRAM = '+gram+' спинов';}
+ else{btn.textContent='⛔ НЕТ GRAM • КУПИ В МАГАЗИНЕ';document.getElementById('freeTag').textContent='Бесплатный спин использован. Купи GRAM за Stars 👆';}
+ document.getElementById('invList').innerHTML=inv.length?inv.map(x=>'<div><span>'+x+'</span><b>HALLOWEEN</b></div>').join(''):'<p style="color:#ccc">Пока пусто. Крути колесо!</p>';
 }
-function show(id,btn){Object.values(ids).forEach(x=>document.getElementById(x).style.display=x==id?'block':'none');if(btn){document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}else{document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.textContent==Object.keys(ids).find(k=>ids[k]==id)));}}
-function createRoom(){if(points<100)return say('Недостаточно демо-очков');points-=100;created++;rooms.unshift({host:displayName,stake:100});say('Комната создана. Это демонстрационный матч.');save();}
-function joinRoom(i){let m=rooms[i];if(points<m.stake)return say('Недостаточно демо-очков');points-=m.stake;rooms.splice(i,1);say('Заявка на вход в комнату #'+(i+1)+'. Multiplayer-подтверждение будет добавлено на серверном этапе.');save();}
-function buyGift(i){let g=gifts[i];if(points<g.c)return say('Недостаточно демо-очков');points-=g.c;inv.unshift(g.n);say(g.n+' добавлен в демо-инвентарь');save();}
-function spin(){if(points<100)return say('Недостаточно демо-очков');points-=100;document.getElementById('wheel').textContent='🎡';setTimeout(()=>{let w=Math.random()<0.45;if(w){points+=200;document.getElementById('res').textContent='🔥 WIN +200 PTS';document.getElementById('wheel').textContent='👑';say('Победа в демо-рулетке! +200 PTS');}else{document.getElementById('res').textContent='💀 LOSE';document.getElementById('wheel').textContent='💀';say('Проигрыш. Попробуй еще раз.');}save();},600);}
-function resetAll(){points=1000;inv=[];created=0;rooms=[{host:'TruthSeeker',stake:100},{host:'NightPlayer',stake:200}];say('DEMO MODE • виртуальные очки');save();}
+function tab(id,btn){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}
+let deg=0,spinning=false;
+function spin(){
+ if(spinning)return;
+ if(!freeUsed){freeUsed=true;}
+ else if(gram>0){gram--;}
+ else{alert('⛔ GRAM закончился! Иди в МАГАЗИН, купи GRAM за Stars.');tab('shop',document.querySelectorAll('.tabs button')[1]);return;}
+ spinning=true;document.getElementById('spinBtn').disabled=true;
+ document.getElementById('flash').style.opacity=.7;setTimeout(()=>document.getElementById('flash').style.opacity=0,180);
+ deg+=1440+Math.floor(Math.random()*360);wheel.style.transform='rotate('+deg+'deg)';
+ Telegram.WebApp.HapticFeedback&&Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+ setTimeout(()=>{
+   spinning=false;document.getElementById('spinBtn').disabled=false;
+   let r=Math.random()*100, prize;
+   if(r<0.5)prize={e:'💎',n:'LEGENDARY DIAMOND CROWN',v:500,txt:'ЛЕГЕНДА!!! 0.5%!!! ТЫ ПРОСТО БОГ!!! +500 очков!'};
+   else if(r<10)prize={e:'👑',n:'EPIC GOLDEN MASK',v:100,txt:'EPIC приз! +100 очков!'};
+   else if(r<35)prize={e:'👻',n:'RARE GHOST',v:30,txt:'RARE приз! +30 очков!'};
+   else if(r<70)prize={e:'🎃',n:'PUMPKIN',v:10,txt:'COMMON приз! +10 очков!'};
+   else prize={e:'🍬',n:'CANDY',v:5,txt:'Маленький приз! +5 очков!'};
+   inv.unshift(prize.e+' '+prize.n);score+=prize.v;save();
+   document.getElementById('winEmoji').textContent=prize.e;
+   document.getElementById('winTitle').textContent=prize.n;
+   document.getElementById('winText').textContent=prize.txt;
+   document.getElementById('winPop').classList.add('show');
+   for(let i=0;i<24;i++){let c=document.createElement('div');c.className='confetti';c.textContent=['🎃','👻','💎','⭐','🔥'][i%5];c.style.left=Math.random()*100+'vw';c.style.animationDelay=(Math.random()*.6)+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),3000);}
+   if(navigator.vibrate)navigator.vibrate([100,50,100]);
+ },4300);
+}
+function closeWin(){document.getElementById('winPop').classList.remove('show');}
+function buy(g,s){if(stars<s){alert('Не хватает Stars! Нажми "ПОЛУЧИТЬ 100 STARS (ДЕМО-ТЕСТ)"');return;}stars-=s;gram+=g;save();alert('🔥 Куплено '+g+' GRAM! Теперь крути колесо!');tab('wheel',document.querySelectorAll('.tabs button')[0]);}
+function getStars(){stars+=100;save();alert('⭐ +100 STARS начислено (демо-тест)');}
+let names=['GhostKing','PumpkinQueen','DarkNiko','xX_Hunter_Xx','Masha 🎃','Timur','SpookyBoy','Alina','DevilFan','Kira 👻'];
+let prizes=['🎃 Pumpkin','👻 Ghost','💎 Diamond','👑 Crown','🍬 Candy'];
+function addFeed(fake){
+ let n=fake?names[Math.floor(Math.random()*names.length)]:name;
+ let p=prizes[Math.floor(Math.random()*prizes.length)];
+ let el=document.getElementById('feed');
+ let d=document.createElement('div');d.innerHTML='<b>'+n+'</b> только что выиграл <b>'+p+'</b> • '+new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+ el.prepend(d);while(el.children.length>5)el.lastChild.remove();
+}
+addFeed(true);addFeed(true);addFeed(true);
+setInterval(()=>{let o=1180+Math.floor(Math.random()*320);document.getElementById('online').textContent=o;},3000);
+setInterval(()=>addFeed(true),7000);
 render();
 </script></body></html>
